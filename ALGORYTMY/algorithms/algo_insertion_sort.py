@@ -1,4 +1,4 @@
-def insertion_sort(sequence):
+def insertion_sort(sequence: list):
 
     seq_len = len(sequence)
     for i in range(1,seq_len):
