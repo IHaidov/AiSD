@@ -1,6 +1,7 @@
 #________import part________
 from algorithms.algo_insertion_sort import insertion_sort
 from algorithms.algo_selection_sort import selection_sort
+from algorithms.algo_shell_sort import shell_sort
 import random
 import time
 
@@ -77,7 +78,7 @@ for j in range(10):
     if algo_choice == 'selection_sort':
         print(f"|---> Array after sorting <---|\n{selection_sort(sequence)}")
     if algo_choice == 'shell_sort':
-        print(f"|---> Array after sorting <---|\n{insertion_sort(sequence)}")
+        print(f"|---> Array after sorting <---|\n{shell_sort(sequence)}")
     if algo_choice == 'quick_sort_right':
         print(f"|---> Array after sorting <---|\n{insertion_sort(sequence)}")
     if algo_choice == 'quick_sort_random':
