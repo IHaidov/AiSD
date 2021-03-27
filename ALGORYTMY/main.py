@@ -2,6 +2,7 @@
 from algorithms.algo_insertion_sort import insertion_sort
 from algorithms.algo_selection_sort import selection_sort
 from algorithms.algo_shell_sort import shell_sort
+from random_generator import random_sequence
 import random
 import time
 
@@ -66,7 +67,18 @@ print("")
 #________loop_part__________
 for j in range(10):
     for i in range(el_number):
-        sequence.append(random.randint(0,rand_range))
+        if sequence_type == 1:
+            sequence = random_sequence.increasing()
+        if sequence_type == 2:
+            sequence = random_sequence.decreasing()
+        if sequence_type == 3:
+            sequence = random_sequence.A_type()
+        if sequence_type == 4:
+            sequence = random_sequence.V_type()
+        if sequence_type == 5:
+            sequence = random_sequence.increasing()
+        if sequence_type == 6:
+            sequence = random_sequence.increasing()
 
     start_time = time.time()
     #________output_part________
