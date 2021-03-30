@@ -2,6 +2,9 @@
 from algorithms.algo_insertion_sort import insertion_sort
 from algorithms.algo_selection_sort import selection_sort
 from algorithms.algo_shell_sort import shell_sort
+from algorithms.algo_heap_sort import heapSort
+from algorithms.algo_quick_sort_rand import quicksort_r
+from algorithms.algo_quick_sort_right import quicksort
 from random_generator import random_sequence
 import random
 import time
@@ -68,33 +71,33 @@ print("")
 for j in range(10):
     for i in range(el_number):
         if sequence_type == 1:
-            sequence = random_sequence.increasing()
+            sequence = random_sequence.increasing(el_number,rand_range)
         if sequence_type == 2:
-            sequence = random_sequence.decreasing()
+            sequence = random_sequence.decreasing(el_number,rand_range)
         if sequence_type == 3:
-            sequence = random_sequence.A_type()
+            sequence = random_sequence.A_type(el_number,rand_range)
         if sequence_type == 4:
-            sequence = random_sequence.V_type()
+            sequence = random_sequence.V_type(el_number,rand_range)
         if sequence_type == 5:
-            sequence = random_sequence.increasing()
+            sequence = random_sequence.increasing(el_number,rand_range)
         if sequence_type == 6:
-            sequence = random_sequence.increasing()
+            sequence = random_sequence.increasing(el_number,rand_range)
 
     start_time = time.time()
     #________output_part________
     print(f"|---> Array before sorting <---|\n{sequence}")
     if algo_choice == 'insertion_sort':
-        print(f"|---> Array after sorting <---|\n{insertion_sort(sequence)}")
+        print(f"|---> Array after sorting <---|\n{insertion_sort(sequence)[0]}")
     if algo_choice == 'heap_sort':
-        print(f"|---> Array after sorting <---|\n{insertion_sort(sequence)}")
+        print(f"|---> Array after sorting <---|\n{heapSort(sequence)}")
     if algo_choice == 'selection_sort':
-        print(f"|---> Array after sorting <---|\n{selection_sort(sequence)}")
+        print(f"|---> Array after sorting <---|\n{selection_sort(sequence)[0]}")
     if algo_choice == 'shell_sort':
         print(f"|---> Array after sorting <---|\n{shell_sort(sequence)}")
     if algo_choice == 'quick_sort_right':
-        print(f"|---> Array after sorting <---|\n{insertion_sort(sequence)}")
+        print(f"|---> Array after sorting <---|\n{quicksort(sequence)}")
     if algo_choice == 'quick_sort_random':
-        print(f"|---> Array after sorting <---|\n{insertion_sort(sequence)}")
+        print(f"|---> Array after sorting <---|\n{quicksort_r(sequence)}")
     print("|---> %s seconds <---|\n" % (time.time() - start_time))
     sequence=[]
 
