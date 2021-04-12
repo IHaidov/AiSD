@@ -203,10 +203,7 @@ class Tree:
         return vals
 
     def repr(self):
-        """Wyświetla tekstową strukturę drzewa.
 
-        :return: str. Struktura dzewa.
-        """
         if not self:
             return 'Dzewo puste. Proszę dodać elementy.'
         the_tree = '\n'

@@ -1,139 +1,139 @@
 import sys
 import random
 
+
+class Node(object):
+    def __init__(self, klucz):
+        self.klucz = klucz
+        self.lewy = None
+        self.prawy = None
+        self.wysokosc = 1
+
+
+class DrzewoAVL(object):
+
+    def dodaj_node(self, korzen, klucz):
+        if not korzen:
+            return Node(klucz)
+        elif klucz < korzen.klucz:
+            korzen.lewy = self.dodaj_node(korzen.lewy, klucz)
+        else:
+            korzen.prawy = self.dodaj_node(korzen.prawy, klucz)
+
+        korzen.wysokosc = 1 + max(self.podajWysokosc(korzen.lewy), self.podajWysokosc(korzen.prawy))
+        zbalansowanie = self.podajBalans(korzen)
+        if zbalansowanie > 1:
+            if self.podajBalans(korzen.lewy) >= 0:
+                return self.obrotPrawo(korzen)
+            else:
+                korzen.lewy = self.obrotLewo(korzen.lewy)
+                return self.obrotPrawo(korzen)
+        if zbalansowanie < -1:
+            if self.podajBalans(korzen.prawy) <= 0:
+                return self.obrotLewo(korzen)
+            else:
+                korzen.prawy = self.obrotPrawo(korzen.prawy)
+                return self.obrotLewo(korzen)
+        return korzen
+
+    def usun_node(self, korzen, klucz):
+        if not korzen:
+            return korzen
+        elif klucz < korzen.klucz:
+            korzen.lewy = self.usun_node(korzen.lewy, klucz)
+        elif klucz > korzen.klucz:
+            korzen.prawy = self.usun_node(korzen.prawy, klucz)
+        else:
+            if korzen.lewy is None:
+                temp = korzen.prawy
+                korzen = None
+                return temp
+            temp = self.najmniejszaWartosc(korzen.prawy)
+            korzen.klucz = temp.klucz
+            korzen.prawy = self.usun_node(korzen.prawy, temp.klucz)
+
+        if korzen is None:
+            return korzen
+
+        korzen.wysokosc = 1 + max(self.podajWysokosc(korzen.lewy), self.podajWysokosc(korzen.prawy))
+
+        zbalansowanie = self.podajBalans(korzen)
+
+        if zbalansowanie > 1:
+            if self.podajBalans(korzen.lewy) >= 0:
+                return self.obrotPrawo(korzen)
+            else:
+                korzen.lewy = self.obrotLewo(korzen.lewy)
+                return self.obrotPrawo(korzen)
+        if zbalansowanie < -1:
+            if self.podajBalans(korzen.prawy) <= 0:
+                return self.obrotLewo(korzen)
+            else:
+                korzen.prawy = self.obrotPrawo(korzen.prawy)
+                return self.obrotLewo(korzen)
+        return korzen
+
+    def obrotLewo(self, z):
+        y = z.prawy
+        temp2 = y.lewy
+        y.lewy = z
+        z.prawy = temp2
+        z.wysokosc = 1 + max(self.podajWysokosc(z.lewy), self.podajWysokosc(z.prawy))
+        y.wysokosc = 1 + max(self.podajWysokosc(y.lewy), self.podajWysokosc(y.prawy))
+        return y
+
+    def obrotPrawo(self, z):
+        y = z.lewy
+        temp2 = y.prawy
+        y.prawy = z
+        z.lewy = temp2
+        z.wysokosc = 1 + max(self.podajWysokosc(z.lewy), self.podajWysokosc(z.prawy))
+        y.wysokosc = 1 + max(self.podajWysokosc(y.lewy), self.podajWysokosc(y.prawy))
+        return y
+
+    def podajWysokosc(self, korzen):
+        if not korzen:
+            return 0
+        return korzen.wysokosc
+
+    def podajBalans(self, korzen):
+        if not korzen:
+            return 0
+        return self.podajWysokosc(korzen.lewy) - self.podajWysokosc(korzen.prawy)
+
+    def najmniejszaWartosc(self, korzen):
+        if korzen is None or korzen.lewy is None:
+            return korzen
+        return self.najmniejszaWartosc(korzen.lewy)
+
+    def preOrder(self, korzen):
+        if not korzen:
+            return
+        print("{0} ".format(korzen.klucz), end="")
+        self.preOrder(korzen.lewy)
+        self.preOrder(korzen.prawy)
+
+    def inOrder(self, korzen):
+        if not korzen:
+            return
+        self.inOrder(korzen.lewy)
+        print("{0} ".format(korzen.klucz), end="")
+        self.inOrder(korzen.prawy)
+
+    def printing(self, aktualnie, ind, ostatni):
+        if aktualnie is not None:
+            sys.stdout.write(ind)
+            if ostatni:
+                sys.stdout.write("R----")
+                ind += "     "
+            else:
+                sys.stdout.write("L----")
+                ind += "|    "
+            print(aktualnie.klucz)
+            self.printing(aktualnie.lewy, ind, False)
+            self.printing(aktualnie.prawy, ind, True)
+
 def AVL_TREE_FUNC():
-    class Node(object):
-        def __init__(self, klucz):
-            self.klucz = klucz
-            self.lewy = None
-            self.prawy = None
-            self.wysokosc = 1
-
-
-    class DrzewoAVL(object):
-
-        def dodaj_node(self, korzen, klucz):
-            if not korzen:
-                return Node(klucz)
-            elif klucz < korzen.klucz:
-                korzen.lewy = self.dodaj_node(korzen.lewy, klucz)
-            else:
-                korzen.prawy = self.dodaj_node(korzen.prawy, klucz)
-
-            korzen.wysokosc = 1 + max(self.podajWysokosc(korzen.lewy), self.podajWysokosc(korzen.prawy))
-            zbalansowanie = self.podajBalans(korzen)
-            if zbalansowanie > 1:
-                if self.podajBalans(korzen.lewy) >= 0:
-                    return self.obrotPrawo(korzen)
-                else:
-                    korzen.lewy = self.obrotLewo(korzen.lewy)
-                    return self.obrotPrawo(korzen)
-            if zbalansowanie < -1:
-                if self.podajBalans(korzen.prawy) <= 0:
-                    return self.obrotLewo(korzen)
-                else:
-                    korzen.prawy = self.obrotPrawo(korzen.prawy)
-                    return self.obrotLewo(korzen)
-            return korzen
-
-        def usun_node(self, korzen, klucz):
-            if not korzen:
-                return korzen
-            elif klucz < korzen.klucz:
-                korzen.lewy = self.usun_node(korzen.lewy, klucz)
-            elif klucz > korzen.klucz:
-                korzen.prawy = self.usun_node(korzen.prawy, klucz)
-            else:
-                if korzen.lewy is None:
-                    temp = korzen.prawy
-                    korzen = None
-                    return temp
-                temp = self.najmniejszaWartosc(korzen.prawy)
-                korzen.klucz = temp.klucz
-                korzen.prawy = self.usun_node(korzen.prawy, temp.klucz)
-
-            if korzen is None:
-                return korzen
-
-            korzen.wysokosc = 1 + max(self.podajWysokosc(korzen.lewy), self.podajWysokosc(korzen.prawy))
-
-            zbalansowanie = self.podajBalans(korzen)
-
-            if zbalansowanie > 1:
-                if self.podajBalans(korzen.lewy) >= 0:
-                    return self.obrotPrawo(korzen)
-                else:
-                    korzen.lewy = self.obrotLewo(korzen.lewy)
-                    return self.obrotPrawo(korzen)
-            if zbalansowanie < -1:
-                if self.podajBalans(korzen.prawy) <= 0:
-                    return self.obrotLewo(korzen)
-                else:
-                    korzen.prawy = self.obrotPrawo(korzen.prawy)
-                    return self.obrotLewo(korzen)
-            return korzen
-
-        def obrotLewo(self, z):
-            y = z.prawy
-            temp2 = y.lewy
-            y.lewy = z
-            z.prawy = temp2
-            z.wysokosc = 1 + max(self.podajWysokosc(z.lewy), self.podajWysokosc(z.prawy))
-            y.wysokosc = 1 + max(self.podajWysokosc(y.lewy), self.podajWysokosc(y.prawy))
-            return y
-
-        def obrotPrawo(self, z):
-            y = z.lewy
-            temp2 = y.prawy
-            y.prawy = z
-            z.lewy = temp2
-            z.wysokosc = 1 + max(self.podajWysokosc(z.lewy), self.podajWysokosc(z.prawy))
-            y.wysokosc = 1 + max(self.podajWysokosc(y.lewy), self.podajWysokosc(y.prawy))
-            return y
-
-        def podajWysokosc(self, korzen):
-            if not korzen:
-                return 0
-            return korzen.wysokosc
-
-        def podajBalans(self, korzen):
-            if not korzen:
-                return 0
-            return self.podajWysokosc(korzen.lewy) - self.podajWysokosc(korzen.prawy)
-
-        def najmniejszaWartosc(self, korzen):
-            if korzen is None or korzen.lewy is None:
-                return korzen
-            return self.najmniejszaWartosc(korzen.lewy)
-
-        def preOrder(self, korzen):
-            if not korzen:
-                return
-            print("{0} ".format(korzen.klucz), end="")
-            self.preOrder(korzen.lewy)
-            self.preOrder(korzen.prawy)
-
-        def inOrder(self, korzen):
-            if not korzen:
-                return
-            self.inOrder(korzen.lewy)
-            print("{0} ".format(korzen.klucz), end="")
-            self.inOrder(korzen.prawy)
-
-        def printing(self, aktualnie, ind, ostatni):
-            if aktualnie is not None:
-                sys.stdout.write(ind)
-                if ostatni:
-                    sys.stdout.write("R----")
-                    ind += "     "
-                else:
-                    sys.stdout.write("L----")
-                    ind += "|    "
-                print(aktualnie.klucz)
-                self.printing(aktualnie.lewy, ind, False)
-                self.printing(aktualnie.prawy, ind, True)
-
-
     koniec = False
     wybor1 = 0
     wybor2 = 0
