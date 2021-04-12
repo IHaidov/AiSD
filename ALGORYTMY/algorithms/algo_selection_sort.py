@@ -1,3 +1,7 @@
+###########################
+# Selection sort
+###########################
+
 def selection_sort(sequence: list):
     n = len(sequence)
     operation_count = 0

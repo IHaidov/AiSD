@@ -1,3 +1,7 @@
+###########################
+# Shell sort
+###########################
+
 def shell_sort(sequence: list):
     n = len(sequence)
     gap = n // 2

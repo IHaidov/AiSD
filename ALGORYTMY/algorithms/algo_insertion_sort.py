@@ -1,3 +1,7 @@
+###########################
+# Insertion Sort
+###########################
+
 def insertion_sort(sequence: list):
     operation_count = 0
     seq_len = len(sequence)

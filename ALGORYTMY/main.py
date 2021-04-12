@@ -60,8 +60,8 @@ while(flag):
           "|---> 2.Decreasing\n"
           "|---> 3.A (up-down)\n"
           "|---> 4.V (down-up)\n"
-          "|---> 5.Increasing with repeat after k elements\n"
-          "|---> 6.Decreasing with repeat after k elements")
+          "|---> 5.User input\n"
+          "|---> 6.Random")
     sequence_type = int(input())
     if sequence_type >= 1 and sequence_type<=6:
         flag = False
@@ -79,9 +79,9 @@ for j in range(10):
         if sequence_type == 4:
             sequence = random_sequence.V_type(el_number,rand_range)
         if sequence_type == 5:
-            sequence = random_sequence.increasing(el_number,rand_range)
+            sequence = list(map(int, input().split()))
         if sequence_type == 6:
-            sequence = random_sequence.increasing(el_number,rand_range)
+            sequence = random_sequence.random_seq(el_number,rand_range)
 
     start_time = time.time()
     #________output_part________
