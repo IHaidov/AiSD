@@ -91,7 +91,7 @@ bst_f_creation.writelines(bst_creation)
 bst_f_creation.close()
 
 avl_f_creation = open("ATworzenie AVL.txt","a")
-avl_f_creation.writelines(bst_creation)
+avl_f_creation.writelines(avl_creation)
 avl_f_creation.close()
 
 bst_f_min = open("BMinimum BST.txt","a")
