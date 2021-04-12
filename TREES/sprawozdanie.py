@@ -41,34 +41,34 @@ for i in range(10):
     bst_tree = BST_Tree()
     for j in array:
         bst_tree.root.add(j)
-    bst_creation.append("%s" % (time.time() - start_time))
+    bst_creation.append("%s\n" % (time.time() - start_time))
 
     start_time = time.time()
     avl_tree = DrzewoAVL()
     korzen = None
     for j in array:
         korzen = avl_tree.dodaj_node(korzen, j)
-    avl_creation.append("%s" % (time.time() - start_time))
+    avl_creation.append("%s\n" % (time.time() - start_time))
 
     start_time = time.time()
     bst_tree.DSW()
-    bst_balance.append(f'{time.time() - start_time}')
+    bst_balance.append(f'{time.time() - start_time}\n')
 
     start_time = time.time()
     minValue(bst_tree.root)
-    bst_min.append("%s" % (time.time() - start_time))
+    bst_min.append("%s\n" % (time.time() - start_time))
 
     start_time = time.time()
     avl_tree.najmniejszaWartosc(korzen)
-    avl_min.append("%s" % (time.time() - start_time))
+    avl_min.append("%s\n" % (time.time() - start_time))
 
     start_time = time.time()
     avl_tree.inOrder(korzen)
-    avl_in_order.append("%s" % (time.time() - start_time))
+    avl_in_order.append("%s\n" % (time.time() - start_time))
 
     start_time = time.time()
     bst_tree.root.inorder([])
-    bst_in_order.append("%s" % (time.time() - start_time))
+    bst_in_order.append("%s\n" % (time.time() - start_time))
 print('\n')
 print(f'N_min = 400, STEP = 400\n')
 print('Tworzenie BST')
@@ -85,3 +85,31 @@ print('In-order AVL')
 print(avl_in_order)
 print('Balance BST')
 print(bst_balance)
+
+bst_f_creation = open("ATworzenie BST.txt","a")
+bst_f_creation.writelines(bst_creation)
+bst_f_creation.close()
+
+avl_f_creation = open("ATworzenie AVL.txt","a")
+avl_f_creation.writelines(bst_creation)
+avl_f_creation.close()
+
+bst_f_min = open("BMinimum BST.txt","a")
+bst_f_min.writelines(bst_min)
+bst_f_min.close()
+
+avl_f_min = open("BMinimum AVL.txt","a")
+avl_f_min.writelines(avl_min)
+avl_f_min.close()
+
+bst_f_in_order = open("CIn-order BST.txt","a")
+bst_f_in_order.writelines(bst_in_order)
+bst_f_in_order.close()
+
+avl_f_in_order = open("CIn-order AVL.txt","a")
+avl_f_in_order.writelines(avl_min)
+avl_f_in_order.close()
+
+bst_f_balance = open("DSW BST.txt","a")
+bst_f_balance.writelines(bst_balance)
+bst_f_balance.close()
