@@ -153,6 +153,7 @@ class Tree:
             self.right.delete_postorder()
         if self.val is not None:
             self.val = None
+            self.right = self.right = None
         return self
 
     def delete(self, val):
@@ -168,6 +169,7 @@ class Tree:
             return self.left
         if self.left == None:
             return self.right
+
         min_larger_node = self.right
         while min_larger_node.left:
             min_larger_node = min_larger_node.left
@@ -175,22 +177,22 @@ class Tree:
         self.right = self.right.delete(min_larger_node.val)
         return self
 
-    def preorder(self, vals):
-        if self.left is not None:
-            self.left.preorder(vals)
-        if self.val is not None:
-            vals.append(self.val)
-        if self.right is not None:
-            self.right.preorder(vals)
-        return vals
-
     def inorder(self, vals):
-        if self.val is not None:
-            vals.append(self.val)
         if self.left is not None:
             self.left.inorder(vals)
+        if self.val is not None:
+            vals.append(self.val)
         if self.right is not None:
             self.right.inorder(vals)
+        return vals
+
+    def preorder(self, vals):
+        if self.val is not None:
+            vals.append(self.val)
+        if self.left is not None:
+            self.left.preorder(vals)
+        if self.right is not None:
+            self.right.preorder(vals)
         return vals
 
     def postorder(self, vals):
