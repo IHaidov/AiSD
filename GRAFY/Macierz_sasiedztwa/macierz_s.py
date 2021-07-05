@@ -47,16 +47,17 @@ def sort_dfs(v):
 
     return True
 
-n,m = map(int,input().split())
-macierz_sasiedztwa(n,m)
-print()
-dfs(0)
 
-visited = []
-for i in range(n):
-    visited.append(_WHITE)
-print()
+
+#print()
+#dfs(0)
+
+#visited = []
+#for i in range(n):
+#    visited.append(_WHITE)
+#print()
+macierz_sasiedztwa(n,m)
 for i in range(len(A)):
     sort_dfs(i)
-print(Asort[::-1])
+#print(Asort[::-1])
 

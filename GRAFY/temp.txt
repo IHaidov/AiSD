@@ -1,0 +1,26 @@
+//generacja
+int** generateDAG(int vertex, int percent)
+{
+    int** matrix = new int* [vertex];
+    for (int i = 0; i < vertex; ++i)
+    {
+        matrix[i] = new int[vertex];
+    }
+
+    for (int i = 0; i < vertex; i++)
+    {
+        for (int j = 0; j < vertex; j++)
+        {
+            if (i >= j)
+            {
+                matrix[i][j] = 0;
+            }
+            else
+            {
+                int generator = (rand() % (percent*100/60));
+                matrix[i][j] = (generator <= percent) ? 1 : 0;
+            }
+        }
+    }
+    return matrix;
+}

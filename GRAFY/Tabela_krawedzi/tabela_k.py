@@ -20,6 +20,16 @@ def tabela_kr(n):
     for i in range(n):
         print(A[i][0], A[i][1])
 
+def mac_to_tab(array,n):
+
+    for i in range(n):
+        for j in range(n):
+            if array[i][j] == 1:
+                 A.append([i,j])
+    for i in range(n):
+        visited.append(False)
+
+
 def dfs(v):
     visited[v] = True
     print(v, end=' ')
@@ -49,9 +59,18 @@ tabela_kr(10)
 print()
 print(A)
 #dfs(0)
-print(visited)
-for i in range(len(A)):
-    sort_dfs(A[i][0])
-print(Asort[::-1])
+#print(visited)
+#for i in range(len(A)):
+#    sort_dfs(A[i][0])
+#print(Asort[::-1])
+#a = [[0, 1, 1, 1, 1], [0, 0, 1, 1, 1], [0, 0, 0, 1, 1], [0, 0, 0, 0, 1], [0, 0, 0, 0, 0]]
+#A = []
+#visited = []
+#mac_to_tab(a,5)
+#print(A)
+#dfs(0)
 
+#for i in range(len(A)):
+#    sort_dfs(A[i][0])
+#print(Asort[::-1])
 
