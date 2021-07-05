@@ -10,7 +10,7 @@ Repository structure:*
 - Automatical generator of DAG(50% of fuless)
 - 3 representation of graph
 
-# (Undirected graph)
+## (Undirected graph)
 - Hamiltonian cycle & path
 - Euler's cycle & path
 - Automatical generator of undirected graph(30% of fulness and 70% of fulness)
