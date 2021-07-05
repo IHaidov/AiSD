@@ -1,5 +1,5 @@
 # AiSD
-This repository is created for tasks and programs from Algorithms and Structure of Data.  
+This repository is created for tasks and programs from Algorithms and Structure of Data.  \n
 Repository structure:
 
 -GRAFY - contains implementation of graph algorithms
