@@ -1,48 +1,32 @@
 # AiSD
-This repository is created for tasks and programs from AiSD.  
-Project structure:
+*This repository is created for tasks and programs from Algorithms and Structure of Data.  
+Repository structure:*
 
-• algorithms
+# GRAFY - contains implementation of graph algorithms
+## (DAG graph)
+- DFS algorithm
+- BFS algorithm
+- Topological sort
+- Automatical generator of DAG(50% of fuless)
+- 3 representation of graph
 
-  | - insertion_sort.py 
-  
-  | - heap_sort.py
-  
-  | - shell_sort.py
-  
-  | - selection_sort.py
-  
-  | - quick_sort_rand.py
-  
-  | - quick_sort_right.py
-  
-• graph
+## (Undirected graph)
+- Hamiltonian cycle & path
+- Euler's cycle & path
+- Automatical generator of undirected graph(30% of fulness and 70% of fulness)
 
-  | - graph_insertion_sort.jpg 
-  
-  | - graph_heap_sort.jpg
-  
-  | - graph_shell_sort.jpg
-  
-  | - graph_selection_sort.jpg
-  
-  | - graph_quick_sort_rand.jpg
-  
-  | - graph_quick_sort_right.jpg
-  
-• json
+# TREES
+## BST & AVL
+- search MIN and MAX values
+- print a tree with pre-order or in-order method
+- delete one key in the tree
+- delete whole tree with post-order method
+- balance a tree 
 
-  | - insertion_sort.json
-  
-  | - heap_sort.json
-  
-  | - shell_sort.json
-  
-  | - selection_sort.json
-  
-  | - quick_sort_rand.json
-  
-  | - quick_sort_right.json
-  
-- main.py
-- sprawozdanie.py
+# ALGORYTMY
+- insertion sort
+- selection sort
+- shell sort
+- heap sort
+- quick sort(right pivot)
+- quick sort(random pivot)
